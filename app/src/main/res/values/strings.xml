@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My First Galaxy App</string>
+    <string name="for_galaxy_sake">0</string>
+    <string name="btn_toast_text">TOAST</string>
+    <string name="btn_count_text">COUNT</string>
+    <string name="btn_random_text">RANDOM</string>
+    <string name="random_heading">Here is a random number between 0 and %1d.</string>
+</resources>
