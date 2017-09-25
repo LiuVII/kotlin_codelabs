@@ -1,4 +1,5 @@
 package com.example.mpyblake.helloworldapp
+import android.app.Activity
 import android.content.Intent
 import kotlinx.android.synthetic.main.activity_main.textView
 
@@ -9,6 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+
+
+    val Num_Request = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,15 @@ class MainActivity : AppCompatActivity() {
         randomIntent.putExtra(SecondActivity.TOTAL_COUNT, count)
 
         // Start the new activity.
-        startActivity(randomIntent)
+        startActivityForResult(randomIntent, Num_Request)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Num_Request && resultCode == Activity.RESULT_OK) {
+            val countString = data.getStringExtra(SecondActivity.EXTRA_REPLY)
+            val newcount = Integer.parseInt(countString)
+            textView.text = newcount.toString()
+        }
     }
 }

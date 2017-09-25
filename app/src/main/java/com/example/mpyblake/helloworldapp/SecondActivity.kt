@@ -1,4 +1,5 @@
 package com.example.mpyblake.helloworldapp
+import android.app.Activity
 import android.content.Intent
 import kotlinx.android.synthetic.main.activity_second.textview_random
 import kotlinx.android.synthetic.main.activity_second.textview_label
@@ -13,6 +14,7 @@ class SecondActivity : AppCompatActivity() {
 
     companion object {
         const val TOTAL_COUNT = "total_count"
+        const val EXTRA_REPLY = "com.example.android.twoactivities.extra.REPLY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,5 +46,20 @@ class SecondActivity : AppCompatActivity() {
         textview_label.text = getString(R.string.random_heading, count)
     }
 
+    fun resOk(view: View) {
 
+        val replyIntent = Intent()
+        val res = textview_random.text.toString()
+        replyIntent.putExtra(EXTRA_REPLY, res)
+        setResult(Activity.RESULT_OK, replyIntent)
+        finish()
+    }
+
+    fun resCancel(view: View) {
+
+        val replyIntent = Intent()
+        setResult(Activity.RESULT_CANCELED, replyIntent)
+        finish()
+    }
 }
+
