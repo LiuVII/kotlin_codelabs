@@ -6,8 +6,11 @@ import kotlinx.android.synthetic.main.activity_second.textview_label
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class SecondActivity : AppCompatActivity() {
@@ -17,10 +20,56 @@ class SecondActivity : AppCompatActivity() {
         const val EXTRA_REPLY = "com.example.android.twoactivities.extra.REPLY"
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putString("random", textview_random.text.toString())
+        Log.i("SecondActivity","DataSaved")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            textview_random.text = savedInstanceState.getString("random")
+        }
+        Log.i("SecondActivity","SavedDataRestored")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
         showRandomNumber()
+        Log.i("SecondActivity","Create")
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.i("SecondActivity","Restart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("SecondActivity","Resume")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("SecondActivity","Destroy")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("SecondActivity","Pause")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("SecondActivity","Start")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("SecondActivity","Stop")
     }
 
     fun showRandomNumber() {
