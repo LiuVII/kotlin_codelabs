@@ -107,6 +107,15 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(randomIntent, Num_Request)
     }
 
+    fun intentMe(view: View) {
+
+        // Create an Intent to start the second activity
+        val impIntent = Intent(this, ImplicitIntent::class.java)
+
+        // Start the new activity.
+        startActivity(impIntent)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null && requestCode == Num_Request && resultCode == Activity.RESULT_OK) {
