@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.mpyblake.helloworldapp.R.id.textView
@@ -16,6 +19,20 @@ class MainActivity : AppCompatActivity() {
 
 
     val Num_Request = 1
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.om1 -> Toast.makeText(this,"You clicked Settings", Toast.LENGTH_SHORT).show()
+            R.id.om2 -> Toast.makeText(this,"You clicked on Mic", Toast.LENGTH_SHORT).show()
+            R.id.om3 -> Toast.makeText(this,"You clicked Status", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
@@ -35,9 +52,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.i("MainActivity","Create")
-        //if (savedInstanceState != null) {
-        //    textView.text = savedInstanceState.getString("count")
-        //}
     }
 
     override fun onRestart() {
@@ -86,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         count++
 
         // Display the new value in the text view.
-        textView.text = count.toString();
+        textView.text = count.toString()
     }
 
     fun randomMe(view: View) {
@@ -98,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         val countString = textView.text.toString()
 
         // Convert value to a number and increment it
-        var count: Int = Integer.parseInt(countString)
+        val count: Int = Integer.parseInt(countString)
 
         // Add the count to the extras for the Intent.
         randomIntent.putExtra(SecondActivity.TOTAL_COUNT, count)
